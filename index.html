@@ -40,28 +40,9 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="http://gregpike.net/demos/bootstrap-file-input/bootstrap.file-input.js.pagespeed.jm.IdmWcpRIii.js"></script>
+    <script src="Database.js"></script>
     <script>$(document).ready(function(){$('input[type=file]').bootstrapFileInput();});</script>
 	<script>
-
-			function Sight(image, location, difficulty, popularity, title, notes) {
-                this.image = image;
-                this.location = location;
-                this.difficulty = difficulty;
-                this.popularity = popularity;
-                this.title = title;
-                this.notes = notes;
-            }
-
-            function Location(lat, long) {
-                this.lat = lat;
-                this.long = long;
-            }
-
-
-		var dataSet = [new Sight("http://upload.wikimedia.org/wikipedia/en/thumb/8/89/Angel_Oak_Tree_in_SC.jpg/1280px-Angel_Oak_Tree_in_SC.jpg",
-                    Location(-44, 55.2), 3, 44, "Angel Oak", "so underwhelming!"), new Sight("http://www.charlestoncitypaper.com/imager/bull-island/b/original/1884233/9b29/IMG_0769.JPG",
-                    Location(25, -33), 1, 22, "Bulls Island", "Pretty dead trees huh?"), new Sight("http://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Hunting_Island_2.jpg/300px-Hunting_Island_2.jpg",
-                    Location(33, 33), 2, 3, "The Marsh", "Watch out for the skeeters!")];
 
         for(var i = 0; i < dataSet.length; i++) {
                 d3.select("#scenes").append("div").attr("class", "row").append("div").attr("class", "col-xs-12 col-sm-6").append("div").attr("class", "thumbnail")
