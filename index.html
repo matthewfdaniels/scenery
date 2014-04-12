@@ -19,7 +19,10 @@
   </head>
   <body>
   	<div class=".container-fluid">
-	
+		<div id="splash">
+		</div>
+
+
 	<nav class="navbar navbar-default navbar-fixed-top text-center" role="navigation">
 		<h3>Tinder</h3>
 	</nav>
@@ -73,12 +76,23 @@
                 d3.select("#sec" + i).append("p").text(dataSet[i].notes);
                 d3.select("#sec" + i).append("form").attr("method","GET").attr("id","form" + i).append("input").attr("type","hidden").attr("name","photoid").attr("value", i);
                 d3.select("#form" + i).append("a").attr("href", "photo.html").append("button").attr("type","submit").attr("class","btn btn-primary").text("View more information");
-
-
             }
+		
 	</script>
+	
+<!-- splash page -->
 
+<script>
 
+$(function() {
+  setTimeout(hideSplash, 2000);
+});
+
+function hideSplash() {
+  $.mobile.changePage("#home", "fade");
+}
+
+</script>
 
   </body>
 </html>
