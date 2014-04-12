@@ -25,6 +25,7 @@
 	</nav>
 	<div id="scenes">
 	</div>
+	
 	<nav class="navbar navbar-default navbar-fixed-bottom text-center" role="navigation">
 		<div id="submitbutton">
 			<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" title="Submit">
@@ -70,7 +71,9 @@
 
                 d3.select("#sec" + i).append("h3").text(dataSet[i].title);
                 d3.select("#sec" + i).append("p").text(dataSet[i].notes);
-                d3.select("#sec" + i).append("p").append("a").attr("href", "photo.html").attr("class", "btn btn-primary").attr("role", "button").text("View more information");
+                d3.select("#sec" + i).append("form").attr("method","GET").attr("id","form" + i).append("input").attr("type","hidden").attr("name","photoid").attr("value", i);
+                d3.select("#form" + i).append("a").attr("href", "photo.html").append("button").attr("type","submit").attr("class","btn btn-primary").text("View more information");
+
 
             }
 	</script>
