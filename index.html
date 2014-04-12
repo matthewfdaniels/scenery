@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,48 +23,13 @@
 	<nav class="navbar navbar-default navbar-fixed-top text-center" role="navigation">
 		<h3>Tinder</h3>
 	</nav>
-		<div class="row">
-  			<div class="col-xs-12 col-sm-6">
-			    <div class="thumbnail">
-					<img src="http://rmfrenze.stu.cofc.edu/index.jpg">
-					<div class="caption">
-			    	      <h3>Awesome path on a trail</h3>
-			        	  <p>This location is about 30 km off of the main road in forest park. You can bike it in about 30 min. I highly...</p>
-				          <p><a href="photo.html" class="btn btn-primary" role="button">View more information...</a></p>
-				      </div>
-			    </div>
-			</div>
+	<div id="scenes">
+	</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom text-center" role="navigation">
+		<div id="submitbutton">
+			<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" title="Submit">
 		</div>
-		<div class="row">
-  			<div class="col-xs-12 col-sm-6">
-			    <div class="thumbnail">
-					<img src="http://rmfrenze.stu.cofc.edu/index.jpg">
-					<div class="caption">
-			    	      <h3>Awesome path on a trail</h3>
-			        	  <p>This location is about 30 km off of the main road in forest park. You can bike it in about 30 min. I highly...</p>
-				          <p><a href="photo.html" class="btn btn-primary" role="button">View more information...</a></p>
-				      </div>
-			    </div>
-			</div>
-		</div>
-			<div class="row">
-  			<div class="col-xs-12 col-sm-6">
-			    <div class="thumbnail">
-					<img src="http://rmfrenze.stu.cofc.edu/index.jpg">
-					<div class="caption">
-			    	      <h3>Awesome path on a trail</h3>
-			        	  <p>This location is about 30 km off of the main road in forest park. You can bike it in about 30 min. I highly...</p>
-				          <p><a href="photo.html" class="btn btn-primary" role="button">View more information...</a></p>
-				      </div>
-			    </div>
-			</div>
-		</div>
-
-		<nav class="navbar navbar-default navbar-fixed-bottom text-center" role="navigation">
-			<div id="submitbutton">
-				<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput" title="Submit">
-			</div>
-		</nav>
+	</nav>
 	
 
 <!-- container close div -->
@@ -71,10 +37,43 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="http://gregpike.net/demos/bootstrap-file-input/bootstrap.file-input.js.pagespeed.jm.IdmWcpRIii.js"></script>
     <script>$(document).ready(function(){$('input[type=file]').bootstrapFileInput();});</script>
+	<script>
 
+			function Sight(image, location, difficulty, popularity, title, notes) {
+                this.image = image;
+                this.location = location;
+                this.difficulty = difficulty;
+                this.popularity = popularity;
+                this.title = title;
+                this.notes = notes;
+            }
+
+            function Location(lat, long) {
+                this.lat = lat;
+                this.long = long;
+            }
+
+
+		var dataSet = [new Sight("http://upload.wikimedia.org/wikipedia/en/thumb/8/89/Angel_Oak_Tree_in_SC.jpg/1280px-Angel_Oak_Tree_in_SC.jpg",
+                    Location(-44, 55.2), 3, 44, "Angel Oak", "so underwhelming!"), new Sight("http://www.charlestoncitypaper.com/imager/bull-island/b/original/1884233/9b29/IMG_0769.JPG",
+                    Location(25, -33), 1, 22, "Bulls Island", "Pretty dead trees huh?"), new Sight("http://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Hunting_Island_2.jpg/300px-Hunting_Island_2.jpg",
+                    Location(33, 33), 2, 3, "The Marsh", "Watch out for the skeeters!")];
+
+        for(var i = 0; i < dataSet.length; i++) {
+                d3.select("#scenes").append("div").attr("class", "row").append("div").attr("class", "col-xs-12 col-sm-6").append("div").attr("class", "thumbnail")
+                        .attr("id", "pic" + i).append("img").attr("src", dataSet[i].image).attr("height", "100px").attr("width", "100%");
+                d3.select("#pic" + i).append("div").attr("class", "caption").attr("id", "sec" + i);
+
+                d3.select("#sec" + i).append("h3").text(dataSet[i].title);
+                d3.select("#sec" + i).append("p").text(dataSet[i].notes);
+                d3.select("#sec" + i).append("p").append("a").attr("href", "photo.html").attr("class", "btn btn-primary").attr("role", "button").text("View more information");
+
+            }
+	</script>
 
 
 
